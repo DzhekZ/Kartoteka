@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2047
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kartoteka.Model", "Kartoteka.Model\Kartoteka.Model.csproj", "{44BCA84F-A8C8-4426-886E-C9860D0C449D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kartoteka.Client.WForm", "Kartoteka.Client.WForm\Kartoteka.Client.WForm.csproj", "{08F97ADE-A405-4715-8229-023C6A689995}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kartoteka.Client.WPFApp", "Kartoteka.Client.WPFApp\Kartoteka.Client.WPFApp.csproj", "{EA3C95C4-E6A1-4F43-AFCC-2A0A9F26EE75}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kartoteka.Client", "Kartoteka.Client\Kartoteka.Client.csproj", "{CD2010EF-1439-4C16-B150-2747646E6E36}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{44BCA84F-A8C8-4426-886E-C9860D0C449D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{44BCA84F-A8C8-4426-886E-C9860D0C449D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{44BCA84F-A8C8-4426-886E-C9860D0C449D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{44BCA84F-A8C8-4426-886E-C9860D0C449D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{08F97ADE-A405-4715-8229-023C6A689995}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{08F97ADE-A405-4715-8229-023C6A689995}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{08F97ADE-A405-4715-8229-023C6A689995}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{08F97ADE-A405-4715-8229-023C6A689995}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EA3C95C4-E6A1-4F43-AFCC-2A0A9F26EE75}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA3C95C4-E6A1-4F43-AFCC-2A0A9F26EE75}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA3C95C4-E6A1-4F43-AFCC-2A0A9F26EE75}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA3C95C4-E6A1-4F43-AFCC-2A0A9F26EE75}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CD2010EF-1439-4C16-B150-2747646E6E36}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD2010EF-1439-4C16-B150-2747646E6E36}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD2010EF-1439-4C16-B150-2747646E6E36}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD2010EF-1439-4C16-B150-2747646E6E36}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8390403B-5E55-4383-BEA0-A912F4F6FC9C}
+	EndGlobalSection
+EndGlobal

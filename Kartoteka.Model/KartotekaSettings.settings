@@ -1,0 +1,15 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Kartoteka.Model" GeneratedClassName="KartotekaSettings">
+  <Profiles />
+  <Settings>
+    <Setting Name="MinDate" Type="System.DateTime" Scope="User">
+      <Value Profile="(Default)">1900-01-01</Value>
+    </Setting>
+    <Setting Name="MaxDate" Type="System.DateTime" Scope="User">
+      <Value Profile="(Default)">2100-01-01</Value>
+    </Setting>
+    <Setting Name="IssuePeriod" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">14</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
