@@ -14,14 +14,14 @@ using System.Windows.Shapes;
 
 namespace Kartoteka.Client.Views
 {
-  /// <summary>
-  /// Interaction logic for ChitateliMain.xaml
-  /// </summary>
-  public partial class ChitateliMain : Window
-  {
-    public ChitateliMain()
+    /// <summary>
+    /// Interaction logic for ChitateliMain.xaml
+    /// </summary>
+    public partial class ChitateliMain : Window
     {
-      InitializeComponent();
+        public ChitateliMain()
+        {
+            InitializeComponent();
+        }
     }
-  }
 }

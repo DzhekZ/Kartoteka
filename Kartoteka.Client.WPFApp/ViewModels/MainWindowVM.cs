@@ -28,7 +28,7 @@ namespace Kartoteka.Client.WPFApp.ViewModels
         private void ShowChitateliMain()
         {
             // Navigate to ChitateliMainViewModel 
-            App.Router.Navigate.Execute(new ChitateliMainVM()).Subscribe();
+            //App.Router.Navigate.Execute(new ChitateliMainVM()).Subscribe();
 
         }
         public IScreen HostScreen { get; protected set; }

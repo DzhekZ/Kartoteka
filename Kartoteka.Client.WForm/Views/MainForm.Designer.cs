@@ -64,14 +64,14 @@
             // toolStripStatusLabel2
             // 
             this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
-            this.toolStripStatusLabel2.Size = new System.Drawing.Size(118, 17);
-            this.toolStripStatusLabel2.Text = "toolStripStatusLabel2";
+            this.toolStripStatusLabel2.Size = new System.Drawing.Size(12, 17);
+            this.toolStripStatusLabel2.Text = "-";
             // 
             // toolStripStatusLabel3
             // 
             this.toolStripStatusLabel3.Name = "toolStripStatusLabel3";
-            this.toolStripStatusLabel3.Size = new System.Drawing.Size(118, 17);
-            this.toolStripStatusLabel3.Text = "toolStripStatusLabel3";
+            this.toolStripStatusLabel3.Size = new System.Drawing.Size(12, 17);
+            this.toolStripStatusLabel3.Text = "-";
             // 
             // dtpCurrDate
             // 
@@ -156,13 +156,13 @@
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.DateTimePicker dtpCurrDate;
-    private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
-    private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel3;
-    private System.Windows.Forms.MenuStrip menuStrip1;
-    private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
-    private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
-    private System.Windows.Forms.ToolStripMenuItem workToolStripMenuItem;
-    private System.Windows.Forms.ToolStripMenuItem usersToolStripMenuItem;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel3;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem workToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem usersToolStripMenuItem;
         private System.Windows.Forms.Label label1;
     }
 }

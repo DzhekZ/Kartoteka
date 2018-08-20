@@ -28,11 +28,11 @@ namespace Kartoteka.Client
             this.DataContext = new MainWindowViewModel();
         }
 
-    public MainWindowViewModel ViewModel { get; set; }
-    object IViewFor.ViewModel
-    {
-      get { return ViewModel; }
-      set { ViewModel = (MainWindowViewModel)value; }
+        public MainWindowViewModel ViewModel { get; set; }
+        object IViewFor.ViewModel
+        {
+            get { return ViewModel; }
+            set { ViewModel = (MainWindowViewModel)value; }
+        }
     }
-  }
 }

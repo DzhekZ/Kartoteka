@@ -103,6 +103,9 @@ namespace Kartoteka.Model
             FirstName = firsname;
             SecondName = secondname;
             ThirdName = thirdname;
+            Number = 0;
+            Gender = Genders.other;
+            Age = 0;
         }
 
         private User(string firsname, string secondname, string thirdname, int number, Genders gender, int age)

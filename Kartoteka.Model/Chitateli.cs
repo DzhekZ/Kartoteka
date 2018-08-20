@@ -10,6 +10,12 @@ namespace Kartoteka.Model
     public class Chitateli : ReactiveObject
     {
         public User User { get; }
+        private int _id = 0;
+        public int ID
+        {
+            get => _id;
+            set => _id = value;
+        }
         private DateTime _registerdate;
         public DateTime RegisterDate
         {
@@ -23,9 +29,10 @@ namespace Kartoteka.Model
             }
         }
 
-        public Chitateli(User user, DateTime regdate)
+        public Chitateli(User user, DateTime regdate, int id)
         {
             User = user;
+            _id = id;
             _registerdate = regdate;
         }
 

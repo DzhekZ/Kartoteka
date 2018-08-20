@@ -1,33 +1,33 @@
 ﻿namespace Kartoteka.Client.WForm.Views
 {
-  partial class ChitateliMainForm
-  {
-    /// <summary>
-    /// Required designer variable.
-    /// </summary>
-    private System.ComponentModel.IContainer components = null;
-
-    /// <summary>
-    /// Clean up any resources being used.
-    /// </summary>
-    /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-    protected override void Dispose(bool disposing)
+    partial class ChitateliMainForm
     {
-      if (disposing && (components != null))
-      {
-        components.Dispose();
-      }
-      base.Dispose(disposing);
-    }
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
 
-    #region Windows Form Designer generated code
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
 
-    /// <summary>
-    /// Required method for Designer support - do not modify
-    /// the contents of this method with the code editor.
-    /// </summary>
-    private void InitializeComponent()
-    {
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
             this.label1 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -277,31 +277,31 @@
             this.ResumeLayout(false);
             this.PerformLayout();
 
+        }
+
+        #endregion
+
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.Button buttonAdd;
+        private System.Windows.Forms.Button buttonEdit;
+        private System.Windows.Forms.Button buttonDel;
+        private System.Windows.Forms.Button buttonSave;
+        private System.Windows.Forms.Button buttonCancel;
+        private System.Windows.Forms.Button buttonFind;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
     }
-
-    #endregion
-
-    private System.Windows.Forms.Label label1;
-    private System.Windows.Forms.TextBox textBox1;
-    private System.Windows.Forms.Label label2;
-    private System.Windows.Forms.TextBox textBox2;
-    private System.Windows.Forms.Label label3;
-    private System.Windows.Forms.TextBox textBox3;
-    private System.Windows.Forms.Label label4;
-    private System.Windows.Forms.TextBox textBox4;
-    private System.Windows.Forms.Label label5;
-    private System.Windows.Forms.TextBox textBox5;
-    private System.Windows.Forms.Label label6;
-    private System.Windows.Forms.ComboBox comboBox1;
-    private System.Windows.Forms.Label label7;
-    private System.Windows.Forms.TextBox textBox6;
-    private System.Windows.Forms.Button buttonAdd;
-    private System.Windows.Forms.Button buttonEdit;
-    private System.Windows.Forms.Button buttonDel;
-    private System.Windows.Forms.Button buttonSave;
-    private System.Windows.Forms.Button buttonCancel;
-    private System.Windows.Forms.Button buttonFind;
-    private System.Windows.Forms.StatusStrip statusStrip1;
-    private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
-  }
 }

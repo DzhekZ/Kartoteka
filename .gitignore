@@ -3,3 +3,13 @@
 ################################################################################
 
 /.vs/Kartoteka/v15
+/Kartoteka.Client/bin/Debug
+/Kartoteka.Client/obj/Debug
+/Kartoteka.Client.WForm/bin/Debug
+/Kartoteka.Client.WForm/obj/Debug
+/Kartoteka.Client.WPFApp/obj/Debug
+/Kartoteka.Model/bin/Debug
+/Kartoteka.Model/obj/Debug
+/packages
+/ReacUI.Client/bin/Debug
+/ReacUI.Client/obj/Debug
