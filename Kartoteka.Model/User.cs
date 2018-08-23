@@ -9,6 +9,7 @@ namespace Kartoteka.Model
 {
     public class User : ReactiveObject
     {
+        #region Members
         public static IReadOnlyCollection<User> users = new List<User>()
         {
             new User("Библиотекарь", "в", "библиотеке", 0, Genders.other, 100),
@@ -25,6 +26,14 @@ namespace Kartoteka.Model
             other
         };
         private string _firstName;
+        private string _secondName;
+        private string _thirdName;
+        private int _number;
+        private Genders _gender;
+        private int _age;
+    #endregion
+
+        #region Properties
         public string FirstName
         {
             get
@@ -36,7 +45,6 @@ namespace Kartoteka.Model
                 this.RaiseAndSetIfChanged(ref _firstName, value);
             }
         }
-        private string _secondName;
         public string SecondName
         {
             get
@@ -48,7 +56,6 @@ namespace Kartoteka.Model
                 this.RaiseAndSetIfChanged(ref _secondName, value);
             }
         }
-        private string _thirdName;
         public string ThirdName
         {
             get
@@ -60,7 +67,6 @@ namespace Kartoteka.Model
                 this.RaiseAndSetIfChanged(ref _thirdName, value);
             }
         }
-        private int _number;
         public int Number
         {
             get
@@ -72,7 +78,6 @@ namespace Kartoteka.Model
                 this.RaiseAndSetIfChanged(ref _number, value);
             }
         }
-        private Genders _gender;
         public Genders Gender
         {
             get
@@ -84,7 +89,6 @@ namespace Kartoteka.Model
                 this.RaiseAndSetIfChanged(ref _gender, value);
             }
         }
-        private int _age;
         public int Age
         {
             get
@@ -97,7 +101,9 @@ namespace Kartoteka.Model
             }
         }
         public string FullName => (FirstName + " " + SecondName + " " + ThirdName).Trim();
+        #endregion
 
+        #region Construction
         public User(string firsname, string secondname, string thirdname)
         {
             FirstName = firsname;
@@ -117,5 +123,6 @@ namespace Kartoteka.Model
             Gender = gender;
             Age = age;
         }
+        #endregion
     }
 }

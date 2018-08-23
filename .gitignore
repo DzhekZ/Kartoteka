@@ -13,3 +13,9 @@
 /packages
 /ReacUI.Client/bin/Debug
 /ReacUI.Client/obj/Debug
+/.vs
+/Kartoteka/obj
+/Kartoteka.Client/obj/Release
+/Kartoteka.Client.WForm/obj/Release
+/Kartoteka.Client.WPFApp/obj/Release
+/Kartoteka.Model/obj/Release

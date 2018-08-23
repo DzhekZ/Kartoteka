@@ -9,6 +9,7 @@ namespace Kartoteka.Model
 {
     public class Book : ReactiveObject
     {
+        #region Members
         public static IReadOnlyCollection<Book> books = new List<Book>()
         {
             new Book("book1", 1, "author1", 1950),
@@ -18,6 +19,12 @@ namespace Kartoteka.Model
             new Book("book5", 5, "author5", 1917)
         };
         private string _name;
+        private int _invNumber;
+        private string _author;
+        private int _yearPrint;
+        #endregion
+
+        #region Properties
         public string Name
         {
             get
@@ -29,7 +36,6 @@ namespace Kartoteka.Model
                 this.RaiseAndSetIfChanged(ref _name, value);
             }
         }
-        private int _invNumber;
         public int InvNumber
         {
             get
@@ -41,7 +47,6 @@ namespace Kartoteka.Model
                 this.RaiseAndSetIfChanged(ref _invNumber, value);
             }
         }
-        private string _author;
         public string Author
         {
             get
@@ -53,7 +58,6 @@ namespace Kartoteka.Model
                 this.RaiseAndSetIfChanged(ref _author, value);
             }
         }
-        private int _yearPrint;
         public int YearPrint
         {
             get
@@ -65,7 +69,9 @@ namespace Kartoteka.Model
                 this.RaiseAndSetIfChanged(ref _yearPrint, value);
             }
         }
+        #endregion
 
+        #region Construction
         public Book(string name)
         {
             Name = name;
@@ -81,5 +87,6 @@ namespace Kartoteka.Model
             Author = author;
             YearPrint = yearprint;
         }
-    }
+        #endregion
+  }
 }

@@ -7,34 +7,47 @@ using ReactiveUI;
 
 namespace Kartoteka.Model
 {
-    public class Chitateli : ReactiveObject
-    {
-        public User User { get; }
-        private int _id = 0;
-        public int ID
-        {
-            get => _id;
-            set => _id = value;
-        }
-        private DateTime _registerdate;
-        public DateTime RegisterDate
-        {
-            get
-            {
-                return _registerdate;
-            }
-            set
-            {
-                this.RaiseAndSetIfChanged(ref _registerdate, value);
-            }
-        }
+  public class Chitateli : ReactiveObject
+  {
 
-        public Chitateli(User user, DateTime regdate, int id)
+    #region Members
+    private DateTime _registerdate;
+    private User _user;
+    #endregion
+
+    #region Properties
+    public int ID { get; set; } = 0;
+    public DateTime RegisterDate
+    {
+      get
+      {
+        return _registerdate;
+      }
+      set
+      {
+        this.RaiseAndSetIfChanged(ref _registerdate, value);
+      }
+    }
+    public User User
+    {
+      get
+      {
+        return _user;
+      }
+      set
+      {
+        this.RaiseAndSetIfChanged(ref _user, value);
+      }
+    }
+        #endregion
+
+    #region Construction
+    public Chitateli(User user, DateTime regdate, int id)
         {
-            User = user;
-            _id = id;
+            _user = user;
+            ID = id;
             _registerdate = regdate;
         }
-
-    }
+    #endregion
+  }
 }

@@ -33,7 +33,7 @@ namespace Kartoteka.Model
         {
             CurrentDate = DateTime.Now.Date.AddDays(-3);
             //ChitateliKartoteki = new ReactiveList<Chitateli>(User.users.Select(u => new Chitateli(u, DateTime.Now.AddYears(-GetRandomNumber(1, 10)), GetLastIDInChitateli())));
-            ChitateliKartoteki = new List<Chitateli>(User.users.Select(u => new Chitateli(u, DateTime.Now.AddYears(-GetRandomNumber(1, 10)), GetLastIDInChitateli())));
+            ChitateliKartoteki = new List<Chitateli>(User.users.Select(u => new Chitateli(u, DateTime.Now.AddYears(-GetRandomNumber(1, 10)), GetNewIDInChitateli())));
             //ChitateliKartoteki = ChitateliKartoteki.CreateDerivedCollection(x => x);
             //ChitateliKartotekiLight = ChitateliKartoteki.CreateDerivedCollection(x => x.User);
             BooksCatalog = new ReactiveList<BookCatalog>(Book.books.Select(b => new BookCatalog(b)));
@@ -49,9 +49,9 @@ namespace Kartoteka.Model
             }
         }
 
-        private int GetLastIDInChitateli()
+        private int GetNewIDInChitateli()
         {
-            return (ChitateliKartoteki != null) ? ChitateliKartoteki.Max(x => x.ID) : 1;
+            return (ChitateliKartoteki != null) ? (ChitateliKartoteki.Max(x => x.ID)+1) : 1;
         }
 
         public bool CanAddNewUser(User user)
@@ -61,13 +61,13 @@ namespace Kartoteka.Model
 
         public void AddNewUser(User user)
         {
-            ChitateliKartoteki.Add(new Chitateli(user, CurrentDate, GetLastIDInChitateli()));
+            ChitateliKartoteki.Add(new Chitateli(user, CurrentDate, GetNewIDInChitateli()));
             //this.RaisePropertyChanged("_ChitateliKartoteki");
         }
         public void AddNewUser(string fN, string sN, string tN)
         {
             User user = new User(fN, sN, tN);
-            Chitateli chitateli = new Chitateli(user, CurrentDate, GetLastIDInChitateli());
+            Chitateli chitateli = new Chitateli(user, CurrentDate, GetNewIDInChitateli());
             ChitateliKartoteki.Add(chitateli);
         }
 

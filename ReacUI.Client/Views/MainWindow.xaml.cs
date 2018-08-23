@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,24 +22,22 @@ namespace ReacUI.Client
     /// </summary>
     public partial class MainWindow : Window, IViewFor<MainWindowViewModel>
     {
+        MainWindowViewModel ViewModel = new MainWindowViewModel(RxApp.MainThreadScheduler);
         public MainWindow()
         {
             InitializeComponent();
-            ViewModel = new MainWindowViewModel();
             this.OneWayBind(ViewModel, vm => vm.usersForView, v => v.dataGrid.ItemsSource);
             this.OneWayBind(ViewModel, vm => vm.SelectedRow, v => v.selectedRow.Text, p => string.Format("Selected row num: {0}", p));
-            this.BindCommand(ViewModel, vm => vm.ShowChitateliMainCommand, v => v.MenuChitateli);
+            this.BindCommand(ViewModel, vm => vm.ShowChitateliMainCommand, v=>v.MenuChitateli);
             this.BindCommand(ViewModel, vm => vm.ExitFromApplicationCommand, v => v.MenuExit);
-            this.BindCommand(ViewModel, vm => vm.ExitFromApplicationCommand, v => v.bSelect);
-
-            //this.WhenAnyValue(v => v.dataGrid.SelectedIndex).ToProperty(ViewModel, p => p.SelectedRow);
+            this.BindCommand(ViewModel, vm => vm.SelectRowNumberCommand, v=>v.bSelect);
         }
 
-        public MainWindowViewModel ViewModel { get; set; }
-        object IViewFor.ViewModel
-        {
-            get => ViewModel;
-            set { ViewModel = (MainWindowViewModel)value; }
-        }
+    public MainWindowViewModel ViewModel { get; set; }
+    object IViewFor.ViewModel
+    {
+      get => ViewModel;
+      set => ViewModel = (MainWindowViewModel)value;
     }
+  }
 }
