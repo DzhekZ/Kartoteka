@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ReactiveUI;
+//using ReactiveUI;
 
 namespace Kartoteka.Model
 {
-    public class Book : ReactiveObject
+    public class Book
     {
         #region Members
         public static IReadOnlyCollection<Book> books = new List<Book>()
@@ -33,7 +33,8 @@ namespace Kartoteka.Model
             }
             set
             {
-                this.RaiseAndSetIfChanged(ref _name, value);
+                //this.RaiseAndSetIfChanged(ref _name, value);
+                _name = value;
             }
         }
         public int InvNumber
@@ -44,7 +45,8 @@ namespace Kartoteka.Model
             }
             set
             {
-                this.RaiseAndSetIfChanged(ref _invNumber, value);
+                //this.RaiseAndSetIfChanged(ref _invNumber, value);
+                _invNumber = value;
             }
         }
         public string Author
@@ -55,7 +57,8 @@ namespace Kartoteka.Model
             }
             set
             {
-                this.RaiseAndSetIfChanged(ref _author, value);
+                //this.RaiseAndSetIfChanged(ref _author, value);
+                _author = value;
             }
         }
         public int YearPrint
@@ -66,7 +69,8 @@ namespace Kartoteka.Model
             }
             set
             {
-                this.RaiseAndSetIfChanged(ref _yearPrint, value);
+                //this.RaiseAndSetIfChanged(ref _yearPrint, value);
+                _yearPrint = value;
             }
         }
         #endregion

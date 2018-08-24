@@ -3,11 +3,19 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:ReacUI.Client"
+        xmlns:local="clr-namespace:ReacUI.Client.ViewModels"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen">
+  <Window.DataContext>
+    <local:MainWindowViewModel />
+  </Window.DataContext>
     <Grid>
-        <Menu x:Name="menu" Height="20" Margin="0" VerticalAlignment="Top" HorizontalAlignment="Left">
+    <Grid.RowDefinitions>
+      <RowDefinition Height="Auto" />
+      <RowDefinition Height="*" />
+      <RowDefinition Height="Auto" />
+    </Grid.RowDefinitions>
+        <Menu Grid.Row="0" x:Name="menu" Height="20" Margin="0" VerticalAlignment="Top" HorizontalAlignment="Left">
             <MenuItem Header="Файл">
                 <MenuItem Header="Выход" x:Name="MenuExit" Command="{Binding ExitFromApplicationCommand}"/>
             </MenuItem>
@@ -15,17 +23,19 @@
                 <MenuItem Header="Пользователи" x:Name="MenuChitateli" Command="{Binding ShowChitateliMainCommand}"/>
             </MenuItem>
         </Menu>
-        <DataGrid x:Name="dataGrid" Margin="0,25,0,25" Visibility="Visible" ItemsSource="{Binding Path=usersForView}" AutoGenerateColumns="False" IsSynchronizedWithCurrentItem="True" IsReadOnly="True">
+    <DatePicker Grid.Row="0" Height="20" Margin="5,5,5,5" VerticalAlignment="Center" FirstDayOfWeek="Monday" HorizontalAlignment="Right" DisplayDate="{Binding CurrentDateForm, IsAsync=True, Mode=TwoWay, NotifyOnTargetUpdated=True, NotifyOnSourceUpdated=True, StringFormat=\{0:d\}, UpdateSourceTrigger=PropertyChanged}" DisplayDateStart="2000-01-01" DisplayDateEnd="2099-01-01"/>
+
+      <DataGrid Grid.Row="1" x:Name="dataGrid" Margin="5,5,5,5" Visibility="Visible" ItemsSource="{Binding Path=ChitateliKartotekiLight, Mode=OneWay}" AutoGenerateColumns="False" IsReadOnly="True" SelectionMode="Single">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Number" Binding="{Binding Number}" Width="*" />
-                <DataGridTextColumn Header="FIO" Binding="{Binding FullName}" Width="*" />
-                <DataGridTextColumn Header="Gender" Binding="{Binding Gender}" Width="*" />
-                <DataGridTextColumn Header="Age" Binding="{Binding Age}" Width="*" />
+                <DataGridTextColumn Header="Number" Binding="{Binding Number,Mode=OneWay}" Width="*" />
+                <DataGridTextColumn Header="FIO" Binding="{Binding FullName,Mode=OneWay}" Width="*" />
+                <DataGridTextColumn Header="Gender" Binding="{Binding Gender,Mode=OneWay}" Width="*" />
+                <DataGridTextColumn Header="Age" Binding="{Binding Age,Mode=OneWay}" Width="*" />
             </DataGrid.Columns>
         </DataGrid>
-        <DockPanel VerticalAlignment="Bottom" Height="20">
-            <TextBlock x:Name="selectedRow" TextWrapping="Wrap" Text="TextBlock" HorizontalAlignment="Left"/>
-            <Button x:Name="bSelect" Command="{Binding SelectRowNumberCommand}" Content="Select" VerticalAlignment="Center" Width="75" HorizontalAlignment="Right"/>
+        <DockPanel Grid.Row="2" VerticalAlignment="Bottom">
+      <TextBlock x:Name="selectedRow" TextWrapping="Wrap" Text="{Binding StatusString, Mode=OneWay}" HorizontalAlignment="Left" />
+      <Button x:Name="bSelect" Margin="5,5,5,5" Command="{Binding SelectRowNumberCommand, Mode=OneWay}" Content="Select" VerticalAlignment="Center" Width="75" HorizontalAlignment="Right"/>
         </DockPanel>
     </Grid>
 </Window>

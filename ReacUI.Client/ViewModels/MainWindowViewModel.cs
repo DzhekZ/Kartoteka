@@ -14,40 +14,73 @@ namespace ReacUI.Client.ViewModels
 {
     public class MainWindowViewModel : ReactiveObject
     {
-        private KartotekaManage KartotekaManagement { get; } = new KartotekaManage();
-        private IScheduler _mainScheduler;
-        public IReactiveDerivedList<User> usersForView;
-        
+        #region Members
+        private KartotekaManage KartotekaManagement = new KartotekaManage();
         public ReactiveCommand ExitFromApplicationCommand { get; }
         public ReactiveCommand SelectRowNumberCommand { get; }
         public ReactiveCommand ShowChitateliMainCommand { get; }
         private int _selectedrow = 0;
-        public int SelectedRow
-        {
-            get => _selectedrow;
-            set { this.RaiseAndSetIfChanged(ref _selectedrow, value); }
-        }
+        private DateTime _currentDateForm;
+        public ReactiveCommand CurrentDateCommand { get; }
+        private string _statusString = "";
+        #endregion
 
-        public MainWindowViewModel(IScheduler mainScheduler)
-        {
-            if (mainScheduler == null) return;
+    #region Properties
+    public IReactiveDerivedList<Chitateli> ChitateliKartoteki;
+    public IReactiveDerivedList<User> ChitateliKartotekiLight;
+    //public IReactiveDerivedList<BookCatalog> BooksCatalog;
+    //public IReactiveDerivedList<Book> BooksCatalogLight;
+    public int SelectedRow
+    {
+      get => _selectedrow;
+      set { this.RaiseAndSetIfChanged(ref _selectedrow, value); }
+    }
 
-            _mainScheduler = mainScheduler;
+    public DateTime CurrentDateForm
+    {
+      get
+      {
+        return _currentDateForm;
+      }
+      set
+      {
+        this.RaiseAndSetIfChanged(ref _currentDateForm, value);
+        KartotekaManagement.CurrentDate = CurrentDateForm;
+      }
+    }
+    public string StatusString
+    {
+      get
+      {
+        return _statusString;
+      }
+      set
+      {
+        this.RaiseAndSetIfChanged(ref _statusString, value);
+      }
+    }
+    #endregion
+
+    #region Construction
+    public MainWindowViewModel()
+        {
             //KartotekaManagement.PropertyChanged += (s, e) => { this.RaisePropertyChanged(e.PropertyName); };
             // Create commands
             ExitFromApplicationCommand = ReactiveCommand.Create(ExitFromApplication);
             SelectRowNumberCommand = ReactiveCommand.Create(SelectRowNumber);
-            ShowChitateliMainCommand = ReactiveCommand.(ShowChitateliMain);
-            usersForView = KartotekaManagement.ChitateliKartoteki.CreateDerivedCollection(u => u.User);
-        }
+            ShowChitateliMainCommand = ReactiveCommand.Create(ShowChitateliMain);
+            CurrentDateCommand = ReactiveCommand.Create(() => CurrentDateForm = KartotekaManagement.CurrentDate);
+            this.WhenAnyValue(x => x.CurrentDateForm).Select(p => string.Format("Selected date: {0}", p.ToShortDateString())).ToProperty(this, p => p.StatusString);
 
-    private Task ShowChitateliMain(Unit arg)
-    {
-      Action action = () => KartotekaManagement.ChitateliKartoteki.Add(new Chitateli(new User("user", "0", "1"), KartotekaManagement.CurrentDate, 1));
-      _mainScheduler.ScheduleAsync(_mainScheduler,null, action);
-      await Task.Run(() => action);
-      return true;
-    }
+            ChitateliKartoteki = KartotekaManagement.ChitateliKartoteki.CreateDerivedCollection(p => p);
+            ChitateliKartotekiLight = KartotekaManagement.ChitateliKartoteki.CreateDerivedCollection(u => u.User);
+
+      StatusString = string.Format("Loaded users - {0}", ChitateliKartotekiLight.Count);
+      CurrentDateForm = KartotekaManagement.CurrentDate;
+        }
+    #endregion
+
+    #region Commands and Procedures
 
     private void ExitFromApplication()
         {
@@ -55,6 +88,7 @@ namespace ReacUI.Client.ViewModels
         }
         private void ShowChitateliMain()
         {
+          KartotekaManagement.AddNewUser("user", "0", "1");
  
       //Action action = () => KartotekaManagement.ChitateliKartoteki.Add(new Chitateli(new User("user", "0", "1"), KartotekaManagement.CurrentDate, 1));
       //_mainScheduler.ScheduleAsync(action);
@@ -84,4 +118,5 @@ namespace ReacUI.Client.ViewModels
             //
         }
     }
+  #endregion
 }

@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ReactiveUI;
+//using ReactiveUI;
 
 namespace Kartoteka.Model
 {
-  public class Chitateli : ReactiveObject
+  public class Chitateli
   {
 
     #region Members
@@ -25,7 +25,8 @@ namespace Kartoteka.Model
       }
       set
       {
-        this.RaiseAndSetIfChanged(ref _registerdate, value);
+        //this.RaiseAndSetIfChanged(ref _registerdate, value);
+        _registerdate = value;
       }
     }
     public User User
@@ -36,7 +37,8 @@ namespace Kartoteka.Model
       }
       set
       {
-        this.RaiseAndSetIfChanged(ref _user, value);
+        //this.RaiseAndSetIfChanged(ref _user, value);
+        _user = value;
       }
     }
         #endregion
