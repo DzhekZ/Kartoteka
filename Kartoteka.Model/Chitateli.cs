@@ -9,7 +9,6 @@ namespace Kartoteka.Model
 {
   public class Chitateli
   {
-
     #region Members
     private DateTime _registerdate;
     private User _user;

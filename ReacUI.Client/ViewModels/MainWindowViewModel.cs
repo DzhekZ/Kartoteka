@@ -12,22 +12,36 @@ using Kartoteka.Model;
 
 namespace ReacUI.Client.ViewModels
 {
-    public class MainWindowViewModel : ReactiveObject
-    {
-        #region Members
-        private KartotekaManage KartotekaManagement = new KartotekaManage();
-        public ReactiveCommand ExitFromApplicationCommand { get; }
-        public ReactiveCommand SelectRowNumberCommand { get; }
-        public ReactiveCommand ShowChitateliMainCommand { get; }
-        private int _selectedrow = 0;
-        private DateTime _currentDateForm;
-        public ReactiveCommand CurrentDateCommand { get; }
-        private string _statusString = "";
-        #endregion
+  public class MainWindowViewModel : ReactiveObject
+  {
+    #region Members
+    private KartotekaManage KartotekaManagement = new KartotekaManage();
+    private ReactiveList<Chitateli> _chitateliKartotekiView;
+    private readonly IChitateliKartotekiService _chitateliKartotekiService;
+    private ReactiveList<User> _chitateliKartotekiLightView;
+    private readonly IChitateliKartotekiLightService _chitateliKartotekiLightService;
+
+    private int _selectedrow = 0;
+    private DateTime _currentDateForm;
+    private string _statusString = "";
+    #endregion
 
     #region Properties
-    public IReactiveDerivedList<Chitateli> ChitateliKartoteki;
-    public IReactiveDerivedList<User> ChitateliKartotekiLight;
+    public ReactiveCommand CurrentDateCommand { get; }
+    public ReactiveCommand ExitFromApplicationCommand { get; }
+    public ReactiveCommand SelectRowNumberCommand { get; }
+    public ReactiveCommand<Unit, IEnumerable<Chitateli>> ShowChitateliMainCommand { get; private set; }
+
+    public ReactiveList<Chitateli> ChitateliKartotekiView
+    {
+      get => _chitateliKartotekiView;
+      set => this.RaiseAndSetIfChanged(ref _chitateliKartotekiView, value);
+    }
+    public ReactiveList<User> ChitateliKartotekiLightView
+    {
+      get => _chitateliKartotekiLightView;
+      set => this.RaiseAndSetIfChanged(ref _chitateliKartotekiLightView, value);
+    }
     //public IReactiveDerivedList<BookCatalog> BooksCatalog;
     //public IReactiveDerivedList<Book> BooksCatalogLight;
     public int SelectedRow
@@ -35,12 +49,11 @@ namespace ReacUI.Client.ViewModels
       get => _selectedrow;
       set { this.RaiseAndSetIfChanged(ref _selectedrow, value); }
     }
-
     public DateTime CurrentDateForm
     {
       get
       {
-        return _currentDateForm;
+        return _currentDateForm = KartotekaManagement.CurrentDate;
       }
       set
       {
@@ -63,60 +76,54 @@ namespace ReacUI.Client.ViewModels
 
     #region Construction
     public MainWindowViewModel()
-        {
-            //KartotekaManagement.PropertyChanged += (s, e) => { this.RaisePropertyChanged(e.PropertyName); };
-            // Create commands
-            ExitFromApplicationCommand = ReactiveCommand.Create(ExitFromApplication);
-            SelectRowNumberCommand = ReactiveCommand.Create(SelectRowNumber);
-            ShowChitateliMainCommand = ReactiveCommand.Create(ShowChitateliMain);
-            CurrentDateCommand = ReactiveCommand.Create(() => CurrentDateForm = KartotekaManagement.CurrentDate);
-            this.WhenAnyValue(x => x.CurrentDateForm).Select(p => string.Format("Selected date: {0}", p.ToShortDateString())).ToProperty(this, p => p.StatusString);
+    {
+      //KartotekaManagement.PropertyChanged += (s, e) => { this.RaisePropertyChanged(e.PropertyName); };
+      // Create commands
+      ExitFromApplicationCommand = ReactiveCommand.Create(ExitFromApplication);
+      SelectRowNumberCommand = ReactiveCommand.Create(SelectRowNumber);
+      _chitateliKartotekiService = new ChitateliKartotekiService();
+      _chitateliKartotekiLightService = new ChitateliKartotekiLightService();
+      ChitateliKartotekiView = new ReactiveList<Chitateli>();
+      ShowChitateliMainCommand = ReactiveCommand.CreateFromTask(ShowChitateliMainImpl);
+      ShowChitateliMainCommand.ObserveOn(RxApp.MainThreadScheduler).Subscribe(MapChitateliKartotekiViewImpl);
+      ShowChitateliMainCommand.Execute().Subscribe();
 
-            ChitateliKartoteki = KartotekaManagement.ChitateliKartoteki.CreateDerivedCollection(p => p);
-            ChitateliKartotekiLight = KartotekaManagement.ChitateliKartoteki.CreateDerivedCollection(u => u.User);
+      //CurrentDateCommand = ReactiveCommand.Create(() => CurrentDateForm = KartotekaManagement.CurrentDate);
+      //this.WhenAnyValue(x => x.CurrentDateForm).Select(p => string.Format("Selected date: {0}", p.ToShortDateString())).ToProperty(this, p => p.StatusString);
 
-      StatusString = string.Format("Loaded users - {0}", ChitateliKartotekiLight.Count);
-      CurrentDateForm = KartotekaManagement.CurrentDate;
-        }
+
+      StatusString = string.Format("Loaded users - {0}", ChitateliKartotekiView.Count);
+      //CurrentDateForm = KartotekaManagement.CurrentDate;
+    }
     #endregion
 
     #region Commands and Procedures
 
     private void ExitFromApplication()
-        {
-            //
-        }
-        private void ShowChitateliMain()
-        {
-          KartotekaManagement.AddNewUser("user", "0", "1");
- 
-      //Action action = () => KartotekaManagement.ChitateliKartoteki.Add(new Chitateli(new User("user", "0", "1"), KartotekaManagement.CurrentDate, 1));
-      //_mainScheduler.ScheduleAsync(action);
-      //usersForView = null;
-      //_mainScheduler.Schedule(action);
-      // Navigate to ChitateliMain 
-      //Views.ChitateliMain chitateliMain = new Views.ChitateliMain();
-      //chitateliMain.ShowDialog();
-      //KartotekaManagement.ChitateliKartoteki.Add(new Chitateli(new User("user", "0", "1"), KartotekaManagement.CurrentDate, 1));
-      /*Dispatcher.CurrentDispatcher.BeginInvoke(DispatcherPriority.Normal, new Action(async () =>
-      {
-      }));*/
-      //RxApp.MainThreadScheduler.Schedule(TaskStatus.Running,(KartotekaManagement.AddNewUser("user", "0", "1"));
-      //this.RaisePropertyChanged("usersForView");
-
-    }
-
-    private void Proc()
     {
-      
-      //Dispatcher.CurrentDispatcher.BeginInvoke(DispatcherPriority.Normal, new Action(() =>
-      //{
-      //}));
+      //
     }
     private void SelectRowNumber()
-        {
-            //
-        }
+    {
+      //
     }
+    private async Task<IEnumerable<Chitateli>> ShowChitateliMainImpl()
+    {
+      return await _chitateliKartotekiService.Get();
+    }
+    private void MapChitateliKartotekiViewImpl(IEnumerable<Chitateli> chitatelis)
+    {
+      using (ChitateliKartotekiView.SuppressChangeNotifications())
+      {
+        ChitateliKartotekiView.Clear();
+        //chitatelis.ToObservable().Subscribe(p => ChitateliKartotekiView.Add(p));
+
+      }
+    }
+    private async Task<IEnumerable<User>> ShowChitateliLightMainImpl()
+    {
+      return await _chitateliKartotekiLightService.Get();
+    }
+  }
   #endregion
 }

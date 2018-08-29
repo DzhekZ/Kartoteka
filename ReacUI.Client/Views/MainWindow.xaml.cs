@@ -20,26 +20,28 @@ namespace ReacUI.Client
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : Window , IViewFor<MainWindowViewModel>
   {
-    /* , IViewFor<MainWindowViewModel>
-MainWindowViewModel ViewModel = new MainWindowViewModel(RxApp.MainThreadScheduler);
    public MainWindow()
    {
-       InitializeComponent();
-       this.OneWayBind(ViewModel, vm => vm.usersForView, v => v.dataGrid.ItemsSource);
-       this.OneWayBind(ViewModel, vm => vm.SelectedRow, v => v.selectedRow.Text, p => string.Format("Selected row num: {0}", p));
-       this.BindCommand(ViewModel, vm => vm.ShowChitateliMainCommand, v=>v.MenuChitateli);
-       this.BindCommand(ViewModel, vm => vm.ExitFromApplicationCommand, v => v.MenuExit);
-       this.BindCommand(ViewModel, vm => vm.SelectRowNumberCommand, v=>v.bSelect);
+      MainWindowViewModel ViewModel = new MainWindowViewModel();
+      InitializeComponent();
+
+        //this.OneWayBind(ViewModel, vm => vm.usersForView, v => v.dataGrid.ItemsSource);
+        this.OneWayBind(ViewModel, vm => vm.StatusString, v => v.selectedRow.Text);
+        this.BindCommand(ViewModel, vm => vm.ShowChitateliMainCommand, v => v.MenuChitateli);
+        this.BindCommand(ViewModel, vm => vm.ExitFromApplicationCommand, v => v.MenuExit);
+        this.BindCommand(ViewModel, vm => vm.SelectRowNumberCommand, v => v.bSelect);
+        this.Bind(ViewModel, vm => vm.CurrentDateForm, v => v.CurrentDate.DisplayDate);
    }
 
-public MainWindowViewModel ViewModel { get; set; }
-object IViewFor.ViewModel
-{
- get => ViewModel;
- set => ViewModel = (MainWindowViewModel)value;
-}
-*/
+    #region ViewModel Setup
+    public MainWindowViewModel ViewModel { get; set; }
+    object IViewFor.ViewModel
+    {
+     get => ViewModel;
+     set => ViewModel = (MainWindowViewModel)value;
+    }
+    #endregion
   }
 }

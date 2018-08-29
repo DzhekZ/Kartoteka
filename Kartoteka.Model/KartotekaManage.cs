@@ -3,25 +3,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ReactiveUI;
+//using ReactiveUI;
 
 namespace Kartoteka.Model
 {
-    public class KartotekaManage : ReactiveObject
+    public class KartotekaManage
     {
     #region Members
     private static readonly Random getrandom = new Random();
-    public ReactiveList<Chitateli> _chitateliKartoteki;
     private DateTime _currentDate;
-    //public IReactiveList<BookCatalog> BooksCatalog { get; }
-    //public IReactiveDerivedList<Chitateli> ChitateliKartoteki;
-    //public IReactiveDerivedList<User> ChitateliKartotekiLight;
-    //public IReactiveDerivedList<BookCatalog> BooksCatalog;
-    //public IReactiveDerivedList<Book> BooksCatalogLight;
+    private List<Chitateli> _chitateliKartoteki;
+    private List<User> _chitateliKartotekiLight;
+    private List<BookCatalog> _booksCatalog;
+    private List<Book> _booksCatalogLight;
     #endregion
 
     #region Properties
-    public ReactiveList<Chitateli> ChitateliKartoteki
+    public List<Chitateli> ChitateliKartoteki
     {
       get
       {
@@ -29,7 +27,44 @@ namespace Kartoteka.Model
       }
       set
       {
-        this.RaiseAndSetIfChanged(ref _chitateliKartoteki, value);
+        //this.RaiseAndSetIfChanged(ref _chitateliKartoteki, value);
+        _chitateliKartoteki = value;
+      }
+    }
+    public List<User> ChitateliKartotekiLight
+    {
+      get
+      {
+        return _chitateliKartotekiLight;
+      }
+      set
+      {
+        //this.RaiseAndSetIfChanged(ref _chitateliKartotekiLight, value);
+        _chitateliKartotekiLight = value;
+      }
+    }
+    public List<BookCatalog> BooksCatalog
+    {
+      get
+      {
+        return _booksCatalog;
+      }
+      set
+      {
+        //this.RaiseAndSetIfChanged(ref _booksCatalog, value);
+        _booksCatalog = value;
+      }
+    }
+    public List<Book> BooksCatalogLight
+    {
+      get
+      {
+        return _booksCatalogLight;
+      }
+      set
+      {
+        //this.RaiseAndSetIfChanged(ref _booksCatalogLight, value);
+        _booksCatalogLight = value;
       }
     }
     public DateTime CurrentDate
@@ -40,7 +75,8 @@ namespace Kartoteka.Model
       }
       set
       {
-        this.RaiseAndSetIfChanged(ref _currentDate, value);
+        //this.RaiseAndSetIfChanged(ref _currentDate, value);
+        _currentDate = value;
       }
     }
     #endregion
@@ -49,13 +85,10 @@ namespace Kartoteka.Model
     public KartotekaManage()
     {
       CurrentDate = DateTime.Now.Date.AddDays(-3);
-      //ChitateliKartoteki = new ReactiveList<Chitateli>(User.users.Select(u => new Chitateli(u, DateTime.Now.AddYears(-GetRandomNumber(1, 10)), GetLastIDInChitateli())));
-      ChitateliKartoteki = new ReactiveList<Chitateli>(User.users.Select(u => new Chitateli(u, DateTime.Now.AddYears(-GetRandomNumber(1, 10)), GetNewIDInChitateli())));
-      //ChitateliKartoteki = ChitateliKartoteki.CreateDerivedCollection(x => x);
-      //ChitateliKartotekiLight = ChitateliKartoteki.CreateDerivedCollection(x => x.User);
-      //BooksCatalog = new ReactiveList<BookCatalog>(Book.books.Select(b => new BookCatalog(b)));
-      //BooksCatalog = BooksCatalog.CreateDerivedCollection(b => b);
-      //BooksCatalogLight = BooksCatalog.CreateDerivedCollection(b => b.Book);
+      ChitateliKartoteki = new List<Chitateli>(User.users.Select(u => new Chitateli(u, DateTime.Now.AddYears(-GetRandomNumber(1, 10)), GetNewIDInChitateli())));
+      ChitateliKartotekiLight = new List<User>(User.users.Select(u => u));
+      BooksCatalog = new List<BookCatalog>(Book.books.Select(b => new BookCatalog(b,GetNewIDInBookCatalog())));
+      BooksCatalogLight = new List<Book>(Book.books.Select(b => b));
     }
     #endregion
 
@@ -97,6 +130,11 @@ namespace Kartoteka.Model
       ChitateliKartoteki[num].User.ThirdName = user.ThirdName;
       ChitateliKartoteki[num].User.Age = user.Age;
       //this.RaisePropertyChanged("_ChitateliKartoteki");
+    }
+
+    private int GetNewIDInBookCatalog()
+    {
+      return (BooksCatalog != null) ? (BooksCatalog.Max(x => x.ID) + 1) : 1;
     }
 
     public void AddNewBook(Book book)

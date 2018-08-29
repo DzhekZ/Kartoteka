@@ -17,15 +17,15 @@
     </Grid.RowDefinitions>
         <Menu Grid.Row="0" x:Name="menu" Height="20" Margin="0" VerticalAlignment="Top" HorizontalAlignment="Left">
             <MenuItem Header="Файл">
-                <MenuItem Header="Выход" x:Name="MenuExit" Command="{Binding ExitFromApplicationCommand}"/>
+                <MenuItem Header="Выход" x:Name="MenuExit" />
             </MenuItem>
             <MenuItem Header="Работа">
-                <MenuItem Header="Пользователи" x:Name="MenuChitateli" Command="{Binding ShowChitateliMainCommand}"/>
+                <MenuItem Header="Пользователи" x:Name="MenuChitateli" />
             </MenuItem>
         </Menu>
-    <DatePicker Grid.Row="0" Height="20" Margin="5,5,5,5" VerticalAlignment="Center" FirstDayOfWeek="Monday" HorizontalAlignment="Right" DisplayDate="{Binding CurrentDateForm, IsAsync=True, Mode=TwoWay, NotifyOnTargetUpdated=True, NotifyOnSourceUpdated=True, StringFormat=\{0:d\}, UpdateSourceTrigger=PropertyChanged}" DisplayDateStart="2000-01-01" DisplayDateEnd="2099-01-01"/>
+    <DatePicker Grid.Row="0" x:Name="CurrentDate" Height="20" Margin="5,5,5,5" VerticalAlignment="Center" FirstDayOfWeek="Monday" HorizontalAlignment="Right" DisplayDateStart="2000-01-01" DisplayDateEnd="2099-01-01" />
 
-      <DataGrid Grid.Row="1" x:Name="dataGrid" Margin="5,5,5,5" Visibility="Visible" ItemsSource="{Binding Path=ChitateliKartotekiLight, Mode=OneWay}" AutoGenerateColumns="False" IsReadOnly="True" SelectionMode="Single">
+    <DataGrid Grid.Row="1" x:Name="dataGrid" Margin="5,5,5,5" Visibility="Visible" ItemsSource="{Binding Path=ChitateliKartotekiView, Mode=OneWay}" AutoGenerateColumns="False" IsReadOnly="True" SelectionMode="Single">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Number" Binding="{Binding Number,Mode=OneWay}" Width="*" />
                 <DataGridTextColumn Header="FIO" Binding="{Binding FullName,Mode=OneWay}" Width="*" />
@@ -34,8 +34,8 @@
             </DataGrid.Columns>
         </DataGrid>
         <DockPanel Grid.Row="2" VerticalAlignment="Bottom">
-      <TextBlock x:Name="selectedRow" TextWrapping="Wrap" Text="{Binding StatusString, Mode=OneWay}" HorizontalAlignment="Left" />
-      <Button x:Name="bSelect" Margin="5,5,5,5" Command="{Binding SelectRowNumberCommand, Mode=OneWay}" Content="Select" VerticalAlignment="Center" Width="75" HorizontalAlignment="Right"/>
+      <TextBlock x:Name="selectedRow" TextWrapping="Wrap" HorizontalAlignment="Left" />
+      <Button x:Name="bSelect" Margin="5,5,5,5" Content="Select" VerticalAlignment="Center" Width="75" HorizontalAlignment="Right"/>
         </DockPanel>
     </Grid>
 </Window>

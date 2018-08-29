@@ -3,17 +3,34 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ReactiveUI;
+//using ReactiveUI;
 
 namespace Kartoteka.Model
 {
-    public class BookCatalog : ReactiveObject
+    public class BookCatalog
     {
+
+    #region Members
+        private Book _book;
+        private bool _bookPresent;
+        private bool _bookChoose;
+        private DateTime _whenBookOut;
+        private User _userIssued;
+        #endregion
+
+        #region Properties
+        public int ID { get; set; }
         public Book Book
         {
-            get;
+            get
+            {
+              return _book;
+            }
+            set
+            {
+              _book = value;
+            }
         }
-        private bool _bookPresent;
         public bool BookPresent
         {
             get
@@ -22,10 +39,10 @@ namespace Kartoteka.Model
             }
             set
             {
-                this.RaiseAndSetIfChanged(ref _bookPresent, value);
+                //this.RaiseAndSetIfChanged(ref _bookPresent, value);
+                _bookPresent = value;
             }
         }
-        private bool _bookChoose;
         public bool BookChoose
         {
             get
@@ -34,10 +51,10 @@ namespace Kartoteka.Model
             }
             set
             {
-                this.RaiseAndSetIfChanged(ref _bookChoose, value);
+        //this.RaiseAndSetIfChanged(ref _bookChoose, value);
+        _bookChoose = value;
             }
         }
-        private DateTime _whenBookOut;
         public DateTime WhenBookOut
         {
             get
@@ -46,10 +63,10 @@ namespace Kartoteka.Model
             }
             set
             {
-                this.RaiseAndSetIfChanged(ref _whenBookOut, value);
+        //this.RaiseAndSetIfChanged(ref _whenBookOut, value);
+        _whenBookOut = value;
             }
         }
-        private User _userIssued;
         public User UserIssued
         {
             get
@@ -58,12 +75,15 @@ namespace Kartoteka.Model
             }
             set
             {
-                this.RaiseAndSetIfChanged(ref _userIssued, value);
+        //this.RaiseAndSetIfChanged(ref _userIssued, value);
+        _userIssued = value;
             }
         }
+    #endregion
 
-        public BookCatalog(Book book)
+        public BookCatalog(Book book, int id)
         {
+            ID = id;
             Book = book;
             BookPresent = true;
             BookChoose = false;
