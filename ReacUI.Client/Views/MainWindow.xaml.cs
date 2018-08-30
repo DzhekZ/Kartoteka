@@ -27,12 +27,12 @@ namespace ReacUI.Client
       MainWindowViewModel ViewModel = new MainWindowViewModel();
       InitializeComponent();
 
-        //this.OneWayBind(ViewModel, vm => vm.usersForView, v => v.dataGrid.ItemsSource);
-        this.OneWayBind(ViewModel, vm => vm.StatusString, v => v.selectedRow.Text);
-        this.BindCommand(ViewModel, vm => vm.ShowChitateliMainCommand, v => v.MenuChitateli);
+        this.OneWayBind(ViewModel, vm => vm.ChitateliKartotekiView, v => v.dataGrid.ItemsSource);
+        this.OneWayBind(ViewModel, vm => vm.StatusString, v => v.statusRow.Text);
+        this.BindCommand(ViewModel, vm => vm.MenuChitateliCommand, v => v.MenuChitateli);
         this.BindCommand(ViewModel, vm => vm.ExitFromApplicationCommand, v => v.MenuExit);
-        this.BindCommand(ViewModel, vm => vm.SelectRowNumberCommand, v => v.bSelect);
-        this.Bind(ViewModel, vm => vm.CurrentDateForm, v => v.CurrentDate.DisplayDate);
+        //this.BindCommand(ViewModel, vm => vm.SelectRowNumberCommand, v => v.bSelect);
+        //this.Bind(ViewModel, vm => vm.CurrentDateForm, v => v.CurrentDate.DisplayDate);
    }
 
     #region ViewModel Setup

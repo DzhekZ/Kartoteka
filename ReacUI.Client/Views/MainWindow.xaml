@@ -6,9 +6,6 @@
         xmlns:local="clr-namespace:ReacUI.Client.ViewModels"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen">
-  <Window.DataContext>
-    <local:MainWindowViewModel />
-  </Window.DataContext>
     <Grid>
     <Grid.RowDefinitions>
       <RowDefinition Height="Auto" />
@@ -25,17 +22,23 @@
         </Menu>
     <DatePicker Grid.Row="0" x:Name="CurrentDate" Height="20" Margin="5,5,5,5" VerticalAlignment="Center" FirstDayOfWeek="Monday" HorizontalAlignment="Right" DisplayDateStart="2000-01-01" DisplayDateEnd="2099-01-01" />
 
-    <DataGrid Grid.Row="1" x:Name="dataGrid" Margin="5,5,5,5" Visibility="Visible" ItemsSource="{Binding Path=ChitateliKartotekiView, Mode=OneWay}" AutoGenerateColumns="False" IsReadOnly="True" SelectionMode="Single">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Number" Binding="{Binding Number,Mode=OneWay}" Width="*" />
-                <DataGridTextColumn Header="FIO" Binding="{Binding FullName,Mode=OneWay}" Width="*" />
-                <DataGridTextColumn Header="Gender" Binding="{Binding Gender,Mode=OneWay}" Width="*" />
-                <DataGridTextColumn Header="Age" Binding="{Binding Age,Mode=OneWay}" Width="*" />
-            </DataGrid.Columns>
-        </DataGrid>
-        <DockPanel Grid.Row="2" VerticalAlignment="Bottom">
-      <TextBlock x:Name="selectedRow" TextWrapping="Wrap" HorizontalAlignment="Left" />
-      <Button x:Name="bSelect" Margin="5,5,5,5" Content="Select" VerticalAlignment="Center" Width="75" HorizontalAlignment="Right"/>
+    <DataGrid Grid.Row="1" x:Name="dataGrid" Margin="5,5,5,5" Visibility="Visible" AutoGenerateColumns="True" IsReadOnly="True" SelectionMode="Single">
+    </DataGrid>
+        <DockPanel Grid.Row="2" VerticalAlignment="Bottom" Margin="5,0">
+      <TextBlock x:Name="statusRow" TextWrapping="Wrap" HorizontalAlignment="Left" />
         </DockPanel>
     </Grid>
 </Window>
+<!--
+  <Window.DataContext>
+    <local:MainWindowViewModel />
+  </Window.DataContext>
+
+  <DataGrid.Columns>
+  <DataGridTextColumn Header="Number" Binding="{Binding Number,Mode=OneWay}" Width="*" />
+  <DataGridTextColumn Header="FIO" Binding="{Binding FullName,Mode=OneWay}" Width="*" />
+  <DataGridTextColumn Header="Gender" Binding="{Binding Gender,Mode=OneWay}" Width="*" />
+  <DataGridTextColumn Header="Age" Binding="{Binding Age,Mode=OneWay}" Width="*" />
+  </DataGrid.Columns>
+      <Button x:Name="bSelect" Margin="5,5,5,5" Content="Select" VerticalAlignment="Center" Width="75" HorizontalAlignment="Right"/>
+  -->

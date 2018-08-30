@@ -27,10 +27,10 @@ namespace ReacUI.Client.ViewModels
     #endregion
 
     #region Properties
-    public ReactiveCommand CurrentDateCommand { get; }
+    //public ReactiveCommand CurrentDateCommand { get; }
+    //public ReactiveCommand SelectRowNumberCommand { get; }
     public ReactiveCommand ExitFromApplicationCommand { get; }
-    public ReactiveCommand SelectRowNumberCommand { get; }
-    public ReactiveCommand<Unit, IEnumerable<Chitateli>> ShowChitateliMainCommand { get; private set; }
+    public ReactiveCommand<Unit, IEnumerable<Chitateli>> MenuChitateliCommand { get; private set; }
 
     public ReactiveList<Chitateli> ChitateliKartotekiView
     {
@@ -80,13 +80,13 @@ namespace ReacUI.Client.ViewModels
       //KartotekaManagement.PropertyChanged += (s, e) => { this.RaisePropertyChanged(e.PropertyName); };
       // Create commands
       ExitFromApplicationCommand = ReactiveCommand.Create(ExitFromApplication);
-      SelectRowNumberCommand = ReactiveCommand.Create(SelectRowNumber);
+      //SelectRowNumberCommand = ReactiveCommand.Create(SelectRowNumber);
       _chitateliKartotekiService = new ChitateliKartotekiService();
-      _chitateliKartotekiLightService = new ChitateliKartotekiLightService();
+      //_chitateliKartotekiLightService = new ChitateliKartotekiLightService();
       ChitateliKartotekiView = new ReactiveList<Chitateli>();
-      ShowChitateliMainCommand = ReactiveCommand.CreateFromTask(ShowChitateliMainImpl);
-      ShowChitateliMainCommand.ObserveOn(RxApp.MainThreadScheduler).Subscribe(MapChitateliKartotekiViewImpl);
-      ShowChitateliMainCommand.Execute().Subscribe();
+      MenuChitateliCommand = ReactiveCommand.CreateFromTask(MenuChitateliCommandImpl);
+      MenuChitateliCommand.ObserveOn(RxApp.MainThreadScheduler).Subscribe(MapChitateliKartotekiViewImpl);
+      MenuChitateliCommand.Execute().Subscribe();
 
       //CurrentDateCommand = ReactiveCommand.Create(() => CurrentDateForm = KartotekaManagement.CurrentDate);
       //this.WhenAnyValue(x => x.CurrentDateForm).Select(p => string.Format("Selected date: {0}", p.ToShortDateString())).ToProperty(this, p => p.StatusString);
@@ -102,12 +102,13 @@ namespace ReacUI.Client.ViewModels
     private void ExitFromApplication()
     {
       //
+      StatusString = "choosed exit command";
     }
     private void SelectRowNumber()
     {
       //
     }
-    private async Task<IEnumerable<Chitateli>> ShowChitateliMainImpl()
+    private async Task<IEnumerable<Chitateli>> MenuChitateliCommandImpl()
     {
       return await _chitateliKartotekiService.Get();
     }
@@ -116,13 +117,22 @@ namespace ReacUI.Client.ViewModels
       using (ChitateliKartotekiView.SuppressChangeNotifications())
       {
         ChitateliKartotekiView.Clear();
-        //chitatelis.ToObservable().Subscribe(p => ChitateliKartotekiView.Add(p));
-
+        //chitatelis.ToObservable().Subscribe();
+        ChitateliKartotekiView.AddRange(KartotekaManagement.ChitateliKartoteki.FindAll(x => x != null));
       }
     }
-    private async Task<IEnumerable<User>> ShowChitateliLightMainImpl()
+    private async Task<IEnumerable<User>> MenuChitateliLightCommandImpl()
     {
       return await _chitateliKartotekiLightService.Get();
+    }
+    private void MapChitateliKartotekiLightViewImpl(IEnumerable<Chitateli> chitatelis)
+    {
+      using (ChitateliKartotekiLightView.SuppressChangeNotifications())
+      {
+        ChitateliKartotekiLightView.Clear();
+        //chitatelis.ToObservable().Subscribe();
+        ChitateliKartotekiLightView.AddRange(KartotekaManagement.ChitateliKartotekiLight.FindAll(x => x != null));
+      }
     }
   }
   #endregion
