@@ -10,7 +10,7 @@ namespace Kartoteka.Model
     public class BookCatalog
     {
 
-    #region Members
+        #region Members
         private Book _book;
         private bool _bookPresent;
         private bool _bookChoose;
@@ -24,11 +24,11 @@ namespace Kartoteka.Model
         {
             get
             {
-              return _book;
+                return _book;
             }
             set
             {
-              _book = value;
+                _book = value;
             }
         }
         public bool BookPresent
@@ -51,8 +51,8 @@ namespace Kartoteka.Model
             }
             set
             {
-        //this.RaiseAndSetIfChanged(ref _bookChoose, value);
-        _bookChoose = value;
+                //this.RaiseAndSetIfChanged(ref _bookChoose, value);
+                _bookChoose = value;
             }
         }
         public DateTime WhenBookOut
@@ -63,8 +63,8 @@ namespace Kartoteka.Model
             }
             set
             {
-        //this.RaiseAndSetIfChanged(ref _whenBookOut, value);
-        _whenBookOut = value;
+                //this.RaiseAndSetIfChanged(ref _whenBookOut, value);
+                _whenBookOut = value;
             }
         }
         public User UserIssued
@@ -75,12 +75,13 @@ namespace Kartoteka.Model
             }
             set
             {
-        //this.RaiseAndSetIfChanged(ref _userIssued, value);
-        _userIssued = value;
+                //this.RaiseAndSetIfChanged(ref _userIssued, value);
+                _userIssued = value;
             }
         }
-    #endregion
+        #endregion
 
+        #region Construction
         public BookCatalog(Book book, int id)
         {
             ID = id;
@@ -90,6 +91,6 @@ namespace Kartoteka.Model
             WhenBookOut = KartotekaSettings.Default.MinDate;
             UserIssued = User.users.FirstOrDefault();
         }
-
+        #endregion
     }
 }

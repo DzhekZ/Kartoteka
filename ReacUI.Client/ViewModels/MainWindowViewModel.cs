@@ -133,10 +133,10 @@ namespace ReacUI.Client.ViewModels
             using (ChitateliKartotekiView.SuppressChangeNotifications())
             {
                 ChitateliKartotekiView.Clear();
-                //chitatelis.ToObservable().Subscribe();
-                ChitateliKartotekiView.AddRange(KartotekaManagement.ChitateliKartoteki.FindAll(x => x != null));
-                StatusString = string.Format("Loaded users 1 - {0}", ChitateliKartotekiView.Count);
+                chitatelis.ToObservable().Subscribe(x => ChitateliKartotekiView.Add(x));
             }
+            //ChitateliKartotekiView.AddRange(KartotekaManagement.ChitateliKartoteki.FindAll(x => x != null));
+            //StatusString = string.Format("Loaded users 1 - {0}", ChitateliKartotekiView.Count);
         }
         private async Task<IEnumerable<User>> MenuChitateliLightCommandImpl()
         {
@@ -147,10 +147,18 @@ namespace ReacUI.Client.ViewModels
             using (ChitateliKartotekiLightView.SuppressChangeNotifications())
             {
                 ChitateliKartotekiLightView.Clear();
-                //chitatelis.ToObservable().Subscribe();
-                ChitateliKartotekiLightView.AddRange(KartotekaManagement.ChitateliKartotekiLight.FindAll(x => x != null));
-                StatusString = string.Format("Loaded users 2 - {0}", ChitateliKartotekiLightView.Count);
+                chitatelis.ToObservable().Subscribe(x => ChitateliKartotekiLightView.Add(x));
             }
+            try
+            {
+                //KartotekaManagement.AddNewUser("new", "1", "user");
+            }
+            catch (Exception ex)
+            {
+                StatusString = string.Format("error addind new user. Exception: {0}", ex.Message);
+            }
+            //ChitateliKartotekiLightView.AddRange(KartotekaManagement.ChitateliKartotekiLight.FindAll(x => x != null));
+            //StatusString = string.Format("Loaded users 2 - {0}", ChitateliKartotekiLightView.Count);
         }
     }
     #endregion

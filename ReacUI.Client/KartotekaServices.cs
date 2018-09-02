@@ -47,7 +47,8 @@ namespace ReacUI.Client
         public async Task<IEnumerable<BookCatalog>> Get()
         {
             await Task.Delay(1);
-            return new List<BookCatalog>();
+            KartotekaManage kartotekaManage = new KartotekaManage();
+            return new List<BookCatalog>(kartotekaManage.BooksCatalog.Select(x => x));
         }
     }
 
@@ -61,7 +62,8 @@ namespace ReacUI.Client
         public async Task<IEnumerable<Book>> Get()
         {
             await Task.Delay(1);
-            return new List<Book>();
+            KartotekaManage kartotekaManage = new KartotekaManage();
+            return new List<Book>(kartotekaManage.BooksCatalogLight.Select(x => x));
         }
     }
 }

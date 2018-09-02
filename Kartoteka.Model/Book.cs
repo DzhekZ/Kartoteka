@@ -92,5 +92,5 @@ namespace Kartoteka.Model
             YearPrint = yearprint;
         }
         #endregion
-  }
+    }
 }
