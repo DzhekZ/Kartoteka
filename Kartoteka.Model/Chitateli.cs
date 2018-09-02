@@ -7,48 +7,48 @@ using System.Threading.Tasks;
 
 namespace Kartoteka.Model
 {
-  public class Chitateli
-  {
-    #region Members
-    private DateTime _registerdate;
-    private User _user;
-    #endregion
-
-    #region Properties
-    public int ID { get; set; } = 0;
-    public DateTime RegisterDate
+    public class Chitateli
     {
-      get
-      {
-        return _registerdate;
-      }
-      set
-      {
-        //this.RaiseAndSetIfChanged(ref _registerdate, value);
-        _registerdate = value;
-      }
-    }
-    public User User
-    {
-      get
-      {
-        return _user;
-      }
-      set
-      {
-        //this.RaiseAndSetIfChanged(ref _user, value);
-        _user = value;
-      }
-    }
+        #region Members
+        private DateTime _registerdate;
+        private User _user;
         #endregion
 
-    #region Construction
-    public Chitateli(User user, DateTime regdate, int id)
+        #region Properties
+        public int ID { get; set; } = 0;
+        public DateTime RegisterDate
+        {
+            get
+            {
+                return _registerdate;
+            }
+            set
+            {
+                //this.RaiseAndSetIfChanged(ref _registerdate, value);
+                _registerdate = value;
+            }
+        }
+        public User User
+        {
+            get
+            {
+                return _user;
+            }
+            set
+            {
+                //this.RaiseAndSetIfChanged(ref _user, value);
+                _user = value;
+            }
+        }
+        #endregion
+
+        #region Construction
+        public Chitateli(User user, DateTime regdate, int id)
         {
             _user = user;
             ID = id;
             _registerdate = regdate;
         }
-    #endregion
-  }
+        #endregion
+    }
 }

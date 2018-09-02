@@ -7,38 +7,45 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen">
     <Grid>
-    <Grid.RowDefinitions>
-      <RowDefinition Height="Auto" />
-      <RowDefinition Height="*" />
-      <RowDefinition Height="Auto" />
-    </Grid.RowDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
         <Menu Grid.Row="0" x:Name="menu" Height="20" Margin="0" VerticalAlignment="Top" HorizontalAlignment="Left">
             <MenuItem Header="Файл">
-                <MenuItem Header="Выход" x:Name="MenuExit" />
+                <MenuItem Header="Выход" x:Name="MenuExit" Command="{Binding ExitFromApplicationCommand}" />
             </MenuItem>
             <MenuItem Header="Работа">
-                <MenuItem Header="Пользователи" x:Name="MenuChitateli" />
+                <MenuItem Header="Пользователи" x:Name="MenuChitateli" Command="{Binding MenuChitateliLightCommand}" />
             </MenuItem>
         </Menu>
-    <DatePicker Grid.Row="0" x:Name="CurrentDate" Height="20" Margin="5,5,5,5" VerticalAlignment="Center" FirstDayOfWeek="Monday" HorizontalAlignment="Right" DisplayDateStart="2000-01-01" DisplayDateEnd="2099-01-01" />
-
-    <DataGrid Grid.Row="1" x:Name="dataGrid" Margin="5,5,5,5" Visibility="Visible" AutoGenerateColumns="True" IsReadOnly="True" SelectionMode="Single">
-    </DataGrid>
-        <DockPanel Grid.Row="2" VerticalAlignment="Bottom" Margin="5,0">
-      <TextBlock x:Name="statusRow" TextWrapping="Wrap" HorizontalAlignment="Left" />
+        <DatePicker Grid.Row="0" x:Name="CurrentDate" Height="20" Margin="5" VerticalAlignment="Center" FirstDayOfWeek="Monday" HorizontalAlignment="Right" DisplayDateStart="2000-01-01" DisplayDateEnd="2099-01-01" DisplayDate="{Binding CurrentDateForm, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+        <DataGrid Grid.Row="1" x:Name="dataGrid1" Margin="5,0,5,5" Visibility="Visible" AutoGenerateColumns="False" IsReadOnly="True" SelectionMode="Single" ItemsSource="{Binding ChitateliKartotekiView}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Num" Binding="{Binding ID, Mode=OneWay}" Width="50" />
+                <DataGridTextColumn Header="FIO" Binding="{Binding User.FullName, Mode=OneWay}" Width="*" />
+                <DataGridTextColumn Header="Reg date" Binding="{Binding RegisterDate, Mode=OneWay}" Width="200" />
+            </DataGrid.Columns>
+        </DataGrid>
+        <DataGrid Grid.Row="2" x:Name="dataGrid2" Margin="5,0,5,5" Visibility="Visible" AutoGenerateColumns="False" IsReadOnly="True" SelectionMode="Single" ItemsSource="{Binding ChitateliKartotekiLightView}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Number" Binding="{Binding Number, Mode=OneWay}" Width="100" />
+                <DataGridTextColumn Header="FIO" Binding="{Binding FullName, Mode=OneWay}" Width="*" />
+                <DataGridTextColumn Header="Gender" Binding="{Binding Gender, Mode=OneWay}" Width="200" />
+                <DataGridTextColumn Header="Age" Binding="{Binding Age, Mode=OneWay}" Width="100" />
+            </DataGrid.Columns>
+        </DataGrid>
+        <DockPanel Grid.Row="3" VerticalAlignment="Bottom" Margin="5,0" Height="20">
+            <TextBlock x:Name="statusRow" Text="{Binding StatusString, Mode=OneWay}" VerticalAlignment="Center" />
         </DockPanel>
     </Grid>
 </Window>
 <!--
-  <Window.DataContext>
-    <local:MainWindowViewModel />
-  </Window.DataContext>
+    <Window.DataContext>
+        <local:MainWindowViewModel />
+    </Window.DataContext>
 
-  <DataGrid.Columns>
-  <DataGridTextColumn Header="Number" Binding="{Binding Number,Mode=OneWay}" Width="*" />
-  <DataGridTextColumn Header="FIO" Binding="{Binding FullName,Mode=OneWay}" Width="*" />
-  <DataGridTextColumn Header="Gender" Binding="{Binding Gender,Mode=OneWay}" Width="*" />
-  <DataGridTextColumn Header="Age" Binding="{Binding Age,Mode=OneWay}" Width="*" />
-  </DataGrid.Columns>
       <Button x:Name="bSelect" Margin="5,5,5,5" Content="Select" VerticalAlignment="Center" Width="75" HorizontalAlignment="Right"/>
   -->

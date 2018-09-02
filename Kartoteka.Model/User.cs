@@ -13,11 +13,11 @@ namespace Kartoteka.Model
         public static IReadOnlyCollection<User> users = new List<User>()
         {
             new User("Библиотекарь", "в", "библиотеке", 0, Genders.other, 100),
-            new User("Пользователь1", "", "", 0, Genders.man, 0),
-            new User("Пользователь2", "", "", 0, Genders.man, 0),
-            new User("Пользователь3", "", "", 0, Genders.women, 0),
-            new User("Пользователь4", "", "", 0, Genders.women, 0),
-            new User("Пользователь5", "", "", 0, Genders.other, 0)
+            new User("Пользователь1", "", "", 1, Genders.man, 10),
+            new User("Пользователь2", "", "", 2, Genders.man, 20),
+            new User("Пользователь3", "", "", 3, Genders.women, 30),
+            new User("Пользователь4", "", "", 4, Genders.women, 20),
+            new User("Пользователь5", "", "", 5, Genders.other, 10)
         };
         public enum Genders
         {
@@ -31,7 +31,7 @@ namespace Kartoteka.Model
         private int _number;
         private Genders _gender;
         private int _age;
-    #endregion
+        #endregion
 
         #region Properties
         public string FirstName

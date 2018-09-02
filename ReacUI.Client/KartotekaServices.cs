@@ -7,59 +7,61 @@ using Kartoteka.Model;
 
 namespace ReacUI.Client
 {
-  public interface IChitateliKartotekiService
-  {
-    Task<IEnumerable<Chitateli>> Get();
-  }
-
-  public class ChitateliKartotekiService : IChitateliKartotekiService
-  {
-    public async Task<IEnumerable<Chitateli>> Get()
+    public interface IChitateliKartotekiService
     {
-      await Task.Delay(1);
-      return new List<Chitateli>();
+        Task<IEnumerable<Chitateli>> Get();
     }
-  }
 
-  public interface IChitateliKartotekiLightService
-  {
-    Task<IEnumerable<User>> Get();
-  }
-
-  public class ChitateliKartotekiLightService : IChitateliKartotekiLightService
-  {
-    public async Task<IEnumerable<User>> Get()
+    public class ChitateliKartotekiService : IChitateliKartotekiService
     {
-      await Task.Delay(1);
-      return new List<User>();
+        public async Task<IEnumerable<Chitateli>> Get()
+        {
+            await Task.Delay(1);
+            KartotekaManage kartotekaManage = new KartotekaManage();
+            return new List<Chitateli>(kartotekaManage.ChitateliKartoteki.Select(x => x));
+        }
     }
-  }
 
-  public interface IBooksCatalogService
-  {
-    Task<IEnumerable<BookCatalog>> Get();
-  }
-
-  public class BooksCatalogService : IBooksCatalogService
-  {
-    public async Task<IEnumerable<BookCatalog>> Get()
+    public interface IChitateliKartotekiLightService
     {
-      await Task.Delay(1);
-      return new List<BookCatalog>();
+        Task<IEnumerable<User>> Get();
     }
-  }
 
-  public interface IBooksCatalogLightService
-  {
-    Task<IEnumerable<Book>> Get();
-  }
-
-  public class BooksCatalogLightService : IBooksCatalogLightService
-  {
-    public async Task<IEnumerable<Book>> Get()
+    public class ChitateliKartotekiLightService : IChitateliKartotekiLightService
     {
-      await Task.Delay(1);
-      return new List<Book>();
+        public async Task<IEnumerable<User>> Get()
+        {
+            await Task.Delay(1);
+            KartotekaManage kartotekaManage = new KartotekaManage();
+            return new List<User>(kartotekaManage.ChitateliKartotekiLight.Select(x => x));
+        }
     }
-  }
+
+    public interface IBooksCatalogService
+    {
+        Task<IEnumerable<BookCatalog>> Get();
+    }
+
+    public class BooksCatalogService : IBooksCatalogService
+    {
+        public async Task<IEnumerable<BookCatalog>> Get()
+        {
+            await Task.Delay(1);
+            return new List<BookCatalog>();
+        }
+    }
+
+    public interface IBooksCatalogLightService
+    {
+        Task<IEnumerable<Book>> Get();
+    }
+
+    public class BooksCatalogLightService : IBooksCatalogLightService
+    {
+        public async Task<IEnumerable<Book>> Get()
+        {
+            await Task.Delay(1);
+            return new List<Book>();
+        }
+    }
 }
